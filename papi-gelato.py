@@ -22,6 +22,7 @@ def allTaste():
 def step1():
     global iceScoops
     global doosje
+    print("Welkom bij Papi Gelato")
     iceScoops = int(input("Hoeveel bolletjes wilt u?"))
     allTaste()
     if iceScoops in range(1, 4):
