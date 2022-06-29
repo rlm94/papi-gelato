@@ -1,7 +1,7 @@
 #Papi-Gelato
 
 order = True
-scoop = 1.10
+scoop = 0.95
 cones = 1.25
 trays = 0.75
 cream = 0.50
@@ -23,6 +23,8 @@ toppingsCounter = 0
 def welcome():
     print("Welkom bij Papi Gelato")
 
+def sorry():
+    print("Sorry dat is geen optie die we aanbieden...")
 
 def iceScoops():
     global scoopQty, scoops
@@ -52,17 +54,15 @@ def allTaste(type,qty):
 
 
     for i in range(1,qty+1):
-        taste = input(f"Welke smaak wilt u voor {type} nummer {i}?\nA) Aardbei\nC) Chocolade\nM) Munt\nV) Vanille\n").upper()#
+        taste = input(f"Welke smaak wilt u voor {type} nummer {i}?\nA) Aardbei\nC) Chocolade\nV) Vanille\n").upper()#
         if taste == "A":
             tasteLst.append("Aardbei")
         elif taste == "C":
             tasteLst.append("Chocolade")
-        elif taste == "M":
-            tasteLst.append("Munt")
         elif taste == "V":
             tasteLst.append("Vanille")
         else:
-            print("Sorry dat snap ik niet...")
+            sorry()
     return tasteLst
 
 
@@ -82,7 +82,7 @@ def receipt():
     print("                            -------- +")
     print("Totaal                    = €{:.2f}".format((scoopQty*scoop)+(conesQty*cones)+(traysQty*trays)+(toppingsQty)+(ice_liter*ice_literQty)))
     if ice_literQty != 0:
-        print("BTW(9%)                   = €{:.2f}".format((ice_liter*ice_literQty/109*9)))
+        print("BTW(6%)                   = €{:.2f}".format((ice_liter*ice_literQty/106*6)))
 def toppings():
     global toppingsQty
     global toppingsCounter
@@ -103,7 +103,7 @@ def toppings():
         if trayOrCone == "bakje":
             toppingsQty += 0.30
     else:
-        print("Sorry dat snap ik niet...")
+        sorry()
 
 def typeClient():
     global client
@@ -113,7 +113,7 @@ def typeClient():
     elif client == "B":
         client = "zakelijk"
     else:
-        print("Sorry dat snap ik niet...")
+        sorry()
     return client
         
 
@@ -152,9 +152,8 @@ while order == True:
 
         elif scoops in range(8, 50):
             print("Sorry, zulke grote bakken hebben we niet")
-
         else:
-            print("Sorry, dat snap ik niet...")
+            sorry()
     elif client == "zakelijk":
         type = "liter"
         businessInput = int(input("Hoeveel liter ijs wilt u?"))
@@ -163,4 +162,4 @@ while order == True:
         receipt()
         order = False
     else:
-        print("Sorry, dat snap ik niet...")
+        sorry()
